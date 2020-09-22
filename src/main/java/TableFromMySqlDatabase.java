@@ -4,30 +4,24 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
-/*public class TableFromMySqlDatabase extends JFrame {
+public class TableFromMySqlDatabase extends JFrame {
+    public static void main(String[] args) {
+        new TableFromMySqlDatabase().getTable("coach");
+    }
+
+
     public TableFromMySqlDatabase() {
 
     }
 
-    public static void main(String[] args) {
-        TableFromMySqlDatabase frame = new TableFromMySqlDatabase();
-        frame.getTable();
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-    }
+    public void getTable(String tableName) {
 
-    public JTable getTable() {
         ArrayList columnNames = new ArrayList();
         ArrayList data = new ArrayList();
 
-
-        // Java SE 7 has try-with-resources
-        // This will ensure that the sql objects are closed when the program
-        // is finished with them
         try (Connection connection = DbConnectionProvider.getConnection();
              Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(Main.GET_COACH)) {
+             ResultSet rs = stmt.executeQuery("select * from " + tableName)) {
             ResultSetMetaData md = rs.getMetaData();
             int columns = md.getColumnCount();
 
@@ -50,10 +44,7 @@ import java.util.Vector;
             System.out.println(e.getMessage());
         }
 
-        // Create Vectors and copy over elements from ArrayLists to them
-        // Vector is deprecated but I am using them in this example to keep
-        // things simple - the best practice would be to create a custom defined
-        // class which inherits from the AbstractTableModel class
+
         Vector columnNamesVector = new Vector();
         Vector dataVector = new Vector();
 
@@ -70,8 +61,9 @@ import java.util.Vector;
             columnNamesVector.add(columnNames.get(i));
 
         //  Create table with database data
-        JTable table = new JTable(dataVector, columnNamesVector) ;
-        return table;
+        JTable table = new JTable(dataVector, columnNamesVector);
+
+
 
         JScrollPane scrollPane = new JScrollPane(table);
         getContentPane().add(scrollPane);
@@ -79,5 +71,5 @@ import java.util.Vector;
         JPanel buttonPanel = new JPanel();
         getContentPane().add(buttonPanel, BorderLayout.SOUTH);
     }
-}*/
+}
 

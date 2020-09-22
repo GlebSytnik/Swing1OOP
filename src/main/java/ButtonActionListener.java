@@ -1,28 +1,27 @@
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
-public class ButtonActionListener implements ActionListener {
+/*public class ButtonActionListener implements ActionListener {
+
+    private JScrollPane jScrollPane;
+    private String elementsData;
+    private MetaDataReceiver metaDataReceiver;
+    private JFrame frame;
+    private JPanel panel;
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            Connection connection = DbConnectionProvider.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(DbConnectionProvider.GET_COACH);
-            while (resultSet.next()){
-                System.out.print(resultSet.getInt("id" ));
-                System.out.println(" "+resultSet.getString("name"));
-            }
-            connection.close();
-            resultSet.close();
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-
+        if (jScrollPane != null) {
+            panel.remove(jScrollPane);
         }
+       // JTable jTable = new JTable(objectRows, fields.toArray());
+        jScrollPane = new JScrollPane(jTable);
+        panel.add(jScrollPane);
+        frame.revalidate();
+        frame.repaint();
+
+
     }
-}
+}*/
