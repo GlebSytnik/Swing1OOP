@@ -2,12 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 
 public class Main {
 
 
-
-    public static void main(String[] args) throws ClassNotFoundException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
         JFrame frame = new JFrame("Board");
         frame.setSize(300, 400);
@@ -17,14 +18,18 @@ public class Main {
         frame.setLayout(new BorderLayout());
 
         final JPanel panel = new JPanel(new GridLayout(3, 3));
+        /* List<String> tableNames = new MetaDataReceiver().getTableName();
+        for (String name:tableNames){
+            JButton button = new JButton(name);
+            panel.add(button);
+        }*/
 
 
         JButton button = new JButton("coach");
-        JButton button2 = new JButton("customers");
-        JButton button3 = new JButton("workouts");
-        JButton button4 = new JButton("subscription");
-        JButton button5 = new JButton("administrator");
-
+        final JButton button2 = new JButton("customers");
+        final JButton button3 = new JButton("workouts");
+        final JButton button4 = new JButton("subscription");
+        final JButton button5 = new JButton("administrator");
 
 
         panel.add(button);
@@ -36,21 +41,13 @@ public class Main {
         frame.add(panel, BorderLayout.WEST);
         frame.setVisible(true);
 
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                TableFromMySqlDatabase tableFromMySqlDatabase = new TableFromMySqlDatabase();
-                tableFromMySqlDatabase.getTable("coach");
-                tableFromMySqlDatabase.setDefaultCloseOperation(tableFromMySqlDatabase.EXIT_ON_CLOSE);
-                tableFromMySqlDatabase.pack();
-                tableFromMySqlDatabase.setVisible(true);
-            }
-        });
+        button.addActionListener(new ButtonActionListener2());
+
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TableFromMySqlDatabase tableFromMySqlDatabase = new TableFromMySqlDatabase();
-                tableFromMySqlDatabase.getTable("customers");
+                tableFromMySqlDatabase.getTable(button2.getText());
                 tableFromMySqlDatabase.setDefaultCloseOperation(tableFromMySqlDatabase.EXIT_ON_CLOSE);
                 tableFromMySqlDatabase.pack();
                 tableFromMySqlDatabase.setVisible(true);
@@ -60,7 +57,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TableFromMySqlDatabase frame = new TableFromMySqlDatabase();
-                frame.getTable("workouts");
+                frame.getTable(button3.getText());
                 frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);
@@ -70,7 +67,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TableFromMySqlDatabase frame = new TableFromMySqlDatabase();
-                frame.getTable("subscription");
+                frame.getTable(button4.getText());
                 frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);
@@ -80,7 +77,7 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TableFromMySqlDatabase frame = new TableFromMySqlDatabase();
-                frame.getTable("administrator");
+                frame.getTable(button5.getText());
                 frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
                 frame.pack();
                 frame.setVisible(true);

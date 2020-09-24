@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class TableFromMySqlDatabase extends JFrame {
-    public static void main(String[] args) {
-        new TableFromMySqlDatabase().getTable("coach");
-    }
-
 
     public TableFromMySqlDatabase() {
 

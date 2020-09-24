@@ -7,7 +7,8 @@ public class DbConnectionProvider {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/sys?serverTimezone=UTC";
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "password";
-    public  static final String GET_COACH = "SELECT * FROM coach";
+
+
     public DbConnectionProvider(){
 
     }
